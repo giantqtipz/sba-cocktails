@@ -23,6 +23,7 @@
     "express-validator": "^6.6.1",
     "normalize-scss": "^7.0.1",
     "normalize.css": "^8.0.1",
+    "pg": "^8.4.2",
     "react": "^16.14.0",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.14.0",
