@@ -8,6 +8,7 @@
     "compile:watch": "tsc --watch",
     "build": "npm run compile && webpack --mode=\"production\"",
     "server": "node server/index.js",
+    "start": "node server/index.js",
     "start:dev-build": "npm run compile:watch & webpack --mode=\"development\" --watch",
     "start:dev-server": "node-dev --respawn server/index.js",
     "syncDB": "node server/db/syncDB"
