@@ -17,7 +17,6 @@ const Search: React.FC<Props> = ({ props }) => {
   const {
     location: { search },
   } = props;
-  console.log(props);
   const [searchType, setSearchType] = useState('cocktails');
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState('');
