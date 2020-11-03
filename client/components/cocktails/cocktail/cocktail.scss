@@ -1,0 +1,27 @@
+.cocktail-details {
+    width: 100%;
+    h3 {
+        text-align: center;
+    }
+    img {
+        object-fit: cover;
+        max-width: 1024px;
+        width: 100%;
+    }
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    ol {
+        padding-left: 0;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .cocktails {
+        .cocktail {
+            width: 30%;
+        }
+    }
+}
+

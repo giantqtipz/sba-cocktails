@@ -1,0 +1,9 @@
+
+.modal-dialog {
+  max-width: 600px;
+  .modal-body {
+    max-height: 600px;
+    overflow: scroll;
+    padding: 2.6rem;
+  }
+}

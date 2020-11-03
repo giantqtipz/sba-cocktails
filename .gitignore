@@ -1,0 +1,4 @@
+dist/
+js/
+.env/
+node_modules/
