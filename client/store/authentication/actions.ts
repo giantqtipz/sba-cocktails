@@ -19,7 +19,6 @@ export const logIn = (email: string, password: string): AppThunk => async (
 };
 
 export const logOut = (): AppThunk => async (dispatch) => {
-  const data = await app.auth().signOut();
-  console.log(data);
+  await app.auth().signOut();
   dispatch(setAuthentication(false));
 };
