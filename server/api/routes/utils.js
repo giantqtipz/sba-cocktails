@@ -24,7 +24,7 @@ const paginator = async (req, res, limit) => {
           },
           {
             description: {
-              [Op.iLike]: `%${searchTerm || ''}%`,
+              [Op.iLike]: `${searchTerm || ''}%`,
             },
           },
         ],
@@ -44,7 +44,7 @@ const paginator = async (req, res, limit) => {
             },
             {
               description: {
-                [Op.iLike]: `%${searchTerm || ''}%`,
+                [Op.iLike]: `${searchTerm || ''}%`,
               },
             },
           ],
