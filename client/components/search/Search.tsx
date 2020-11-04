@@ -73,20 +73,20 @@ const Search: React.FC<Props> = ({ props }) => {
   };
 
   useEffect(() => {
+    setSearchType(searchTypeDefault);
     if (searchIngredientsDefault) {
       setSearchIngredients(
-        (searchIngredientsDefault && searchIngredientsDefault.split(',')) || ''
+        searchIngredientsDefault && searchIngredientsDefault.split(',')
       );
     }
   }, []);
 
   useEffect(() => {
-    setSearchType(searchTypeDefault || 'cocktails');
     setSearchTerm(searchTermDefault);
     if (searchTerm === '' && count > 0) {
       setSearchResults(`Showing all ${count} cocktails!`);
     } else if (searchTerm !== '' && count > 0) {
-      setSearchResults(`Found ${count} cocktails!`);
+      setSearchResults(`Found ${count} cocktail(s)!`);
     } else {
       setSearchResults(`No cocktails match your query`);
     }
@@ -133,6 +133,7 @@ const Search: React.FC<Props> = ({ props }) => {
         {searchType === 'ingredients' && (
           <ul className="ingredients">
             {searchIngredients &&
+              searchIngredients[0] !== '' &&
               searchIngredients.map((ingredient) => {
                 return (
                   <li className="ingredient">

@@ -1,5 +1,14 @@
 .cocktail-form {
+    position: relative;
     width: 100%;
+    .delete-cocktail {
+        background-color: transparent;
+        border: none;
+        color: red;
+        font-size: 1.2rem;
+        position: absolute;
+        right: 0;
+    }
     label {
         width: 100%;
         span {

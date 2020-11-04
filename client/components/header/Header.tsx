@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import AddCocktail from '../cocktails/cocktailForms/AddCocktail';
 import Login from '../login/Login';
 import { openModal } from '../../store/modal/actions';
@@ -38,11 +39,13 @@ const Header: React.FC = () => {
 
   return (
     <div className="header">
-      <h1>SBA Cocktails</h1>
+      <Link to="/">
+        <h1>SBA Cocktails</h1>
+      </Link>
       <div className="links">
         {signedIn ? (
           <button type="button" onClick={logoutUser}>
-            <i className="fa fa-sign-out" aria-hidden="true" />
+            <i className="fas fa-sign-out-alt" />
           </button>
         ) : (
           <button type="button" onClick={loginModal}>

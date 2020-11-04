@@ -27,7 +27,7 @@ const Login: React.FC = () => {
   return (
     <form onSubmit={(event) => loginUser(event)} className="login-form">
       <label htmlFor="email">
-        E-mail
+        <span>E-mail</span>
         <input
           name="email"
           type="text"
@@ -37,7 +37,7 @@ const Login: React.FC = () => {
         />
       </label>
       <label htmlFor="password">
-        Password
+        <span>Password</span>
         <input
           name="password"
           type="password"
