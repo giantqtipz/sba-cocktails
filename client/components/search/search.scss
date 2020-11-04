@@ -11,6 +11,13 @@
             margin-top: 2rem;
             justify-content: center;
             select {
+                background: #fff;
+                border-radius: 0;
+                -webkit-appearance: none;
+                background :url('https://upload-icon.s3.us-east-2.amazonaws.com/uploads/icons/png/20305395141540882611-512.png') 80% no-repeat;
+                background-color: #fff;
+                background-position: right;
+                background-size: 14px;
                 padding: 6px;
             }
             form {
