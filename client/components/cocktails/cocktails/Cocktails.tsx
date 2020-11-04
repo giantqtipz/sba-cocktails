@@ -26,8 +26,11 @@ const Cocktails: React.FC<Props> = ({
   },
 }) => {
   const {
-    cocktails: { cocktails, count, limit },
-  } = useSelector((state: StoreState) => state.cocktails);
+    cocktails: {
+      cocktails: { cocktails, count, limit },
+    },
+    authentication: { signedIn },
+  } = useSelector((state: StoreState) => state);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCocktails(search));
@@ -55,9 +58,11 @@ const Cocktails: React.FC<Props> = ({
                     <img src={cocktail.image} alt={cocktail.name} />
                     <h3>{cocktail.name}</h3>
                   </Link>
-                  <button type="button" onClick={editCocktail}>
-                    <i className="fas fa-edit" />
-                  </button>
+                  {signedIn && (
+                    <button type="button" onClick={editCocktail}>
+                      <i className="fas fa-edit" />
+                    </button>
+                  )}
                 </div>
               );
             })}
