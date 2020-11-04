@@ -3,6 +3,13 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-bottom: 1rem;
+    a {
+        text-decoration: none;
+    }
+    h1 {
+        color: black;
+    }
     button {
         background-color: transparent;
         border: none;

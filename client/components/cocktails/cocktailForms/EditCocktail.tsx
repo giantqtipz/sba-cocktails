@@ -39,6 +39,13 @@ const EditCocktail: React.FC<{ data: CocktailAttributes }> = (props) => {
   };
   return (
     <form className="cocktail-form" onSubmit={editCocktail}>
+      <button
+        type="button"
+        className="delete-cocktail"
+        onClick={removeCocktail}
+      >
+        <i className="fas fa-trash-alt" />
+      </button>
       <label htmlFor="image">
         <span>Image</span>
         <input
@@ -79,9 +86,6 @@ const EditCocktail: React.FC<{ data: CocktailAttributes }> = (props) => {
         data={{ ingredients, steps }}
       />
       <button type="submit">Update</button>
-      <button type="button" onClick={removeCocktail}>
-        DELETE
-      </button>
     </form>
   );
 };

@@ -122,7 +122,7 @@ const Search: React.FC<Props> = ({ props }) => {
               type="text"
               placeholder={
                 searchType === 'cocktails'
-                  ? 'Search name'
+                  ? 'Enter a name or keyword'
                   : 'Enter an ingredient'
               }
               value={searchTerm || ''}
@@ -133,6 +133,8 @@ const Search: React.FC<Props> = ({ props }) => {
         {searchType === 'ingredients' && (
           <ul className="ingredients">
             {searchIngredients &&
+              // eslint-disable-next-line prettier/prettier
+              (searchIngredients[0] !== '') &&
               searchIngredients.map((ingredient) => {
                 return (
                   <li className="ingredient">

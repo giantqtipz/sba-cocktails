@@ -1,26 +1,31 @@
 
-.search-bar-container {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    max-width: 600px;
-    width: 100%;
-    .search {
+.search-container {
+    .search-bar-container {
         display: flex;
-        margin-top: 2rem;
-        justify-content: center;
-        select {
-            padding: 6px;
-        }
-        form {
-            max-width: 600px;
-            width: 100%;
-            input {
-                box-sizing: border-box;
+        flex-direction: column;
+        margin: 0 auto;
+        max-width: 600px;
+        width: 100%;
+        .search {
+            display: flex;
+            margin-top: 2rem;
+            justify-content: center;
+            select {
                 padding: 6px;
-                width: 100%;
             }
-        }   
+            form {
+                max-width: 600px;
+                width: 100%;
+                input {
+                    box-sizing: border-box;
+                    padding: 6px;
+                    width: 100%;
+                }
+            }   
+        }
+    }
+    p {
+        margin: 1rem 0;
     }
 }
 
@@ -37,7 +42,7 @@
         margin-right: 6px;
         padding: 4px;
         p {
-            margin-bottom: 0;
+            margin: 0;
         }
         button {
             background-color: transparent;
@@ -45,6 +50,14 @@
             font-size: 12px;
             font-weight: normal;
             outline: none;
+        }
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .search-container {
+        p {
+            font-size: 1.1rem;
         }
     }
 }
