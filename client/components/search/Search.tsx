@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../store/store';
 import './search.scss';
@@ -129,6 +129,9 @@ const Search: React.FC<Props> = ({ props }) => {
               onChange={updateSearchTerm}
             />
           </form>
+        </div>
+        <div className="show-all">
+          <Link to="/">Show all</Link>
         </div>
         {searchType === 'ingredients' && (
           <ul className="ingredients">
