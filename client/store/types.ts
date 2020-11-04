@@ -10,4 +10,6 @@ export const TYPES = {
   // Modal Types
   CLOSE_MODAL: 'CLOSE_MODAL',
   OPEN_MODAL: 'OPEN_MODAL',
+  // Authentication Types
+  SIGNED_IN: 'SIGNED_IN',
 };

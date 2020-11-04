@@ -16,13 +16,19 @@ interface Props {
 }
 
 interface CocktailProp {
-  cocktail: CocktailAttributes;
+  cocktails: {
+    cocktail: CocktailAttributes;
+  };
+  authentication: {
+    signedIn: boolean;
+  };
 }
 
 const Cocktail: React.FC<Props> = (props) => {
-  const { cocktail }: CocktailProp = useSelector(
-    (state: StoreState) => state.cocktails
-  );
+  const {
+    cocktails: { cocktail },
+    authentication: { signedIn },
+  }: CocktailProp = useSelector((state: StoreState) => state);
   const dispatch = useDispatch();
   const {
     match: {
@@ -44,9 +50,11 @@ const Cocktail: React.FC<Props> = (props) => {
   }, []);
   return (
     <div className="cocktail-details">
-      <button type="button" onClick={editCocktail}>
-        Edit
-      </button>
+      {signedIn && (
+        <button type="button" onClick={editCocktail}>
+          Edit
+        </button>
+      )}
       <h2>{cocktail.name}</h2>
       <img src={cocktail.image} alt={cocktail.name} />
       <p>{cocktail.description}</p>

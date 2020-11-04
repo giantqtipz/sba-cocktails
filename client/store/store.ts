@@ -3,8 +3,10 @@ import ReduxThunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { cocktailsReducer } from './cocktails/reducer';
 import { modalReducer } from './modal/reducer';
+import { authenticationReducer } from './authentication/reducer';
 
 const reducers = combineReducers({
+  authentication: authenticationReducer,
   cocktails: cocktailsReducer,
   modal: modalReducer,
 });
