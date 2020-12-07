@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { app } from './components/config/firebase';
 import { Cocktail, Header, Main, Popup } from './components/index';
 import { ModalAttributes } from './store/modal/interface';
@@ -19,13 +19,11 @@ const App: React.FC = () => {
   }, []);
   return (
     <React.StrictMode>
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Main} />
-          <Route exact path="/cocktails/:id" component={Cocktail} />
-        </Switch>
-      </Router>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Main} />
+        <Route path="/cocktails/:id" component={Cocktail} />
+      </Switch>
       <Popup BodyModal={BodyModal} open={open} title={title} />
     </React.StrictMode>
   );
