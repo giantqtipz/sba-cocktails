@@ -1,4 +1,3 @@
-const path = require('path');
 const { app } = require('../server');
 const { cocktailsRouter } = require('./cocktails');
 
@@ -9,10 +8,6 @@ const initRoutes = () => {
     app.use('/api/', route);
   });
 };
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../../public/index.html'));
-});
 
 module.exports = {
   initRoutes,

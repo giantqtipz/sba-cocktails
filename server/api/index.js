@@ -1,3 +1,4 @@
+const path = require('path');
 const { app } = require('./server');
 const applyMiddleware = require('./middleware');
 const { initRoutes } = require('./routes/index');
@@ -7,10 +8,8 @@ const PORT = process.env.PORT || 3000;
 initRoutes();
 applyMiddleware();
 
-app.get('/health', (req, res) => {
-  res.send({
-    message: 'I am healthy.',
-  });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public/index.html'));
 });
 
 const startServer = () => {
