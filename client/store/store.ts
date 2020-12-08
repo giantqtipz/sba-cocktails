@@ -11,12 +11,21 @@ const reducers = combineReducers({
   modal: modalReducer,
 });
 
-const middleware = [
+let middleware = [
   ReduxThunk,
   createLogger({
     collapsed: true,
   }),
 ];
+
+if (process.env.NODE_ENV === 'production') {
+  middleware = [
+    ...middleware,
+    createLogger({
+      collapsed: true,
+    }),
+  ];
+}
 
 export type AppState = ReturnType<typeof reducers>;
 
