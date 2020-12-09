@@ -1,6 +1,7 @@
 import 'firebase/auth';
 
 const firebase = require('firebase/app');
+require('dotenv').config();
 
 export const app = firebase.default.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
