@@ -90,6 +90,7 @@ cocktailsRouter.post('/cocktails', async (req, res) => {
   const { name, description, image, steps, ingredients } = req.body;
   const parsedIngredients = parseAttribute('ingredient', ingredients);
   const parsedSteps = parseAttribute('step', steps);
+  console.log('test');
   try {
     await Cocktail.create({
       description,

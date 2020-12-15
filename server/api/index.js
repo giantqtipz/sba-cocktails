@@ -1,7 +1,12 @@
 const path = require('path');
 const { app } = require('./server');
-const applyMiddleware = require('./middleware');
 const { initRoutes } = require('./routes/index');
+const applyMiddleware = require('./middleware');
+
+const indexPath =
+  process.env.NODE_ENV === 'production'
+    ? process.env.INDEX_PATH
+    : '../../public/index.html';
 
 const PORT = process.env.PORT || 3000;
 
@@ -9,7 +14,7 @@ initRoutes();
 applyMiddleware();
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../public/index.html'));
+  res.sendFile(path.join(__dirname, indexPath));
 });
 
 const startServer = () => {

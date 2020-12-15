@@ -46,6 +46,7 @@ export const createCocktail = (
   newCocktail: CocktailAttributes
 ): AppThunk => async (dispatch) => {
   const { data } = await axios.post(`/api/cocktails/`, newCocktail);
+  console.log(data);
   return dispatch(addCocktail(data));
 };
 
