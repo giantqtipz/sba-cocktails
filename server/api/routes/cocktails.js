@@ -30,7 +30,8 @@ cocktailsRouter.get('/cocktails', async (req, res) => {
   try {
     await paginator(req, res, limit);
   } catch (e) {
-    res.status(500).send({ message: 'Server error' });
+    console.log(e);
+    res.status(500).send(e);
   }
 });
 

@@ -18,11 +18,13 @@
   "dependencies": {
     "axios": "^0.20.0",
     "bootstrap": "^4.5.3",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^5.0.1",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
     "firebase": "^8.0.0",
+    "mysql2": "^2.2.5",
     "normalize-scss": "^7.0.1",
     "normalize.css": "^8.0.1",
     "pg": "^8.4.2",

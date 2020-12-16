@@ -1,4 +1,4 @@
-const { Op } = require('sequelize');
+const { Op, Sequelize } = require('sequelize');
 const {
   Cocktail,
   Cocktail_Ingredient,
@@ -17,16 +17,12 @@ const paginator = async (req, res, limit) => {
     await Cocktail.findAndCountAll({
       where: {
         [Op.or]: [
-          {
-            name: {
-              [Op.iLike]: `%${searchTerm || ''}%`,
-            },
-          },
-          {
-            description: {
-              [Op.iLike]: `${searchTerm || ''}%`,
-            },
-          },
+          Sequelize.where(Sequelize.fn('lower', Sequelize.col('name')), {
+            [Op.like]: `%${searchTerm || ''}%`,
+          }),
+          Sequelize.where(Sequelize.fn('lower', Sequelize.col('description')), {
+            [Op.like]: `%${searchTerm || ''}%`,
+          }),
         ],
       },
     }).then(async (data) => {
@@ -37,16 +33,15 @@ const paginator = async (req, res, limit) => {
         order: [[`createdAt`, 'DESC']],
         where: {
           [Op.or]: [
-            {
-              name: {
-                [Op.iLike]: `%${searchTerm || ''}%`,
-              },
-            },
-            {
-              description: {
-                [Op.iLike]: `${searchTerm || ''}%`,
-              },
-            },
+            Sequelize.where(Sequelize.fn('lower', Sequelize.col('name')), {
+              [Op.like]: `%${searchTerm || ''}%`,
+            }),
+            Sequelize.where(
+              Sequelize.fn('lower', Sequelize.col('description')),
+              {
+                [Op.like]: `%${searchTerm || ''}%`,
+              }
+            ),
           ],
         },
         include: [
@@ -69,19 +64,27 @@ const paginator = async (req, res, limit) => {
         .then((cocktails) => {
           return res.status(200).send({ count: data.count, limit, cocktails });
         })
-        .catch(() => res.status(500).send({ message: 'Server error' }));
+        .catch(() => res.status(500).send({ message: 'error here too' }));
     });
   }
 
   if (searchIngredients) {
     await Ingredient.findAll({
-      where: {
-        ingredient: {
-          [Op.iLike]: {
+      where: Sequelize.where(
+        Sequelize.fn('lower', Sequelize.col('ingredient')),
+        {
+          [Op.like]: {
             [Op.any]: ingredients,
           },
-        },
-      },
+        }
+      ),
+      // {
+      //   ingredient: {
+      //     [Op.iLike]: {
+      //       [Op.any]: ingredients,
+      //     },
+      //   },
+      // },
       include: [
         {
           model: Cocktail,
@@ -130,7 +133,7 @@ const paginator = async (req, res, limit) => {
           cocktails: paginateIngredientsByCocktail(filterIngredientsByCocktail),
         });
       })
-      .catch(() => res.status(500).send({ message: 'Server error' }));
+      .catch((e) => res.status(500).send({ message: e, term: ingredients }));
   }
 };
 

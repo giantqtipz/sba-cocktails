@@ -1,7 +1,10 @@
 const path = require('path');
+const cors = require('cors');
 const { app } = require('./server');
 const { initRoutes } = require('./routes/index');
 const applyMiddleware = require('./middleware');
+
+app.use(cors({ origin: true }));
 
 const indexPath =
   process.env.NODE_ENV === 'production'
@@ -14,7 +17,7 @@ initRoutes();
 applyMiddleware();
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, indexPath));
+  res.sendFile(path.join(__dirname, '../../public/index.html'));
 });
 
 const startServer = () => {
