@@ -58,7 +58,6 @@ export const fetchCocktails = (params: string): AppThunk => async (
   dispatch
 ) => {
   const { data } = await axios.get(`/api/cocktails/${params}`);
-  console.log(data);
   return dispatch(setCocktails(data));
 };
 

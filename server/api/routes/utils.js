@@ -9,6 +9,28 @@ const {
 
 const paginator = async (req, res, limit) => {
   const { searchIngredients, searchTerm } = req.query;
+  const searchCocktail =
+    process.env.NODE_ENV === 'production'
+      ? [
+          Sequelize.where(Sequelize.fn('lower', Sequelize.col('name')), {
+            [Op.like]: `%${searchTerm || ''}%`,
+          }),
+          Sequelize.where(Sequelize.fn('lower', Sequelize.col('description')), {
+            [Op.like]: `%${searchTerm || ''}%`,
+          }),
+        ]
+      : [
+          {
+            name: {
+              [Op.iLike]: `%${searchTerm || ''}%`,
+            },
+          },
+          {
+            description: {
+              [Op.iLike]: `${searchTerm || ''}%`,
+            },
+          },
+        ];
   const ingredients =
     searchIngredients &&
     searchIngredients.split(',').map((ingredient) => `%${ingredient}%`);
@@ -16,14 +38,7 @@ const paginator = async (req, res, limit) => {
   if (!searchIngredients) {
     await Cocktail.findAndCountAll({
       where: {
-        [Op.or]: [
-          Sequelize.where(Sequelize.fn('lower', Sequelize.col('name')), {
-            [Op.like]: `%${searchTerm || ''}%`,
-          }),
-          Sequelize.where(Sequelize.fn('lower', Sequelize.col('description')), {
-            [Op.like]: `%${searchTerm || ''}%`,
-          }),
-        ],
+        [Op.or]: searchCocktail,
       },
     }).then(async (data) => {
       const offset = limit * (page === undefined ? 1 - 1 : page - 1);
@@ -32,17 +47,7 @@ const paginator = async (req, res, limit) => {
         offset,
         order: [[`createdAt`, 'DESC']],
         where: {
-          [Op.or]: [
-            Sequelize.where(Sequelize.fn('lower', Sequelize.col('name')), {
-              [Op.like]: `%${searchTerm || ''}%`,
-            }),
-            Sequelize.where(
-              Sequelize.fn('lower', Sequelize.col('description')),
-              {
-                [Op.like]: `%${searchTerm || ''}%`,
-              }
-            ),
-          ],
+          [Op.or]: searchCocktail,
         },
         include: [
           {
@@ -73,8 +78,10 @@ const paginator = async (req, res, limit) => {
       where: Sequelize.where(
         Sequelize.fn('lower', Sequelize.col('ingredient')),
         {
-          [Op.like]: {
-            [Op.any]: ingredients,
+          ingredient: {
+            [Op.like]: {
+              [Op.any]: ingredients,
+            },
           },
         }
       ),
