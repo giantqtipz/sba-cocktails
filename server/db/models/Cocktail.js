@@ -19,9 +19,6 @@ const Cocktail = db.define('Cocktail', {
   description: {
     type: TEXT,
     allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
   },
   image: {
     type: STRING,

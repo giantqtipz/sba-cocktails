@@ -72,7 +72,6 @@ const EditCocktail: React.FC<{ data: CocktailAttributes }> = (props) => {
           name="description"
           onChange={fieldsInputHandler}
           value={fields.description}
-          required
         />
       </label>
       <Ingredients
