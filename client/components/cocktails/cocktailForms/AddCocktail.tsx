@@ -63,7 +63,6 @@ const AddCocktail: React.FC = () => {
           name="description"
           onChange={fieldsInputHandler}
           value={fields.description}
-          required
         />
       </label>
       <Ingredients setFields={setFields} fields={fields} />

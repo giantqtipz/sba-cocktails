@@ -6,10 +6,10 @@
   "scripts": {
     "compile": "tsc",
     "compile:watch": "tsc --watch",
-    "build": "npm run compile && webpack --mode=\"production\"",
+    "build": "npm run compile & webpack --mode=\"production\"",
     "server": "node app.js",
     "start": "node app.js",
-    "start:dev-build": "npm run compile:watch && webpack --mode=\"development\" --watch",
+    "start:dev-build": "npm run compile:watch & webpack --mode=\"development\" --watch",
     "start:dev-server": "node-dev --respawn app.js",
     "syncDB": "node server/db/syncDB"
   },
