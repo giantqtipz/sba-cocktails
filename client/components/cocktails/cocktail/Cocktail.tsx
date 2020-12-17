@@ -89,7 +89,7 @@ const Cocktail: React.FC<Props> = (props) => {
       <ul>
         {cocktail &&
           cocktail.ingredients &&
-          (cocktail.ingredients as any).map(
+          (cocktail.ingredients as any).sort((a: any,b: any) => a.order-b.order).map(
             (ingredient: { ingredient: string }) => (
               <li>{ingredient.ingredient}</li>
             )
@@ -100,7 +100,7 @@ const Cocktail: React.FC<Props> = (props) => {
       <ol>
         {cocktail &&
           cocktail.steps &&
-          (cocktail.steps as any).map((step: { step: string }) => (
+          (cocktail.steps as any).sort((a: any,b: any) => a.order-b.order).map((step: { step: string }) => (
             <li>{step.step}</li>
           ))}
       </ol>
