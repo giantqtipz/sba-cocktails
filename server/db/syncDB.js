@@ -12,4 +12,4 @@ const syncDB = async ({ force = false }) => {
   }
 };
 
-syncDB({ force: process.env.FORCE_DB || true });
+syncDB({ force: process.env.FORCE_DB || false });
