@@ -7,18 +7,13 @@ require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 
 app.use(cors({ origin: true }));
 
-const indexPath =
-  process.env.NODE_ENV === 'production'
-    ? process.env.INDEX_PATH
-    : '../../public/index.html';
-
 const PORT = process.env.NODE_ENV === 'production' ? process.env.PORT : 3000;
 
 initRoutes();
 applyMiddleware();
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, indexPath));
+  res.sendFile(path.join(__dirname, '../../public/index.html'));
 });
 
 const startServer = () => {
