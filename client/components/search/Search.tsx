@@ -114,8 +114,8 @@ const Search: React.FC<Props> = ({ props }) => {
       <div className="search-bar-container">
         <div className="search">
           <select onChange={updateSearchState} value={searchType}>
-            {/* <option value="cocktails">Cocktails</option> */}
-            <option value="ingredients">Ingredients</option>
+            <option value="cocktails">Cocktails</option>
+            {/* <option value="ingredients">Ingredients</option> */}
           </select>
           <form onSubmit={submitSearch}>
             <input

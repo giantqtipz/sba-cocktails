@@ -24,7 +24,9 @@
                 max-width: 600px;
                 width: 100%;
                 input {
+                    border: 1px solid black;
                     box-sizing: border-box;
+                    margin-left: 1px;
                     padding: 6px;
                     width: 100%;
                 }
