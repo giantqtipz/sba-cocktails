@@ -36,6 +36,9 @@ const Cocktails: React.FC<Props> = ({
     dispatch(fetchCocktails(search));
     dispatch(clearCocktail());
   }, [search]);
+  useEffect(() => {
+    window.scroll(0,0);
+  }, []);
   return (
     <div className="cocktails-list-container">
       <div className="cocktails-container">
