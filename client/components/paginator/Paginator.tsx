@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './paginator.scss';
@@ -49,16 +50,27 @@ const Paginator: React.FC<Props> = (props) => {
       pageNum === pageLimit ? pageNum : pageNum + 1
     }`;
   };
+  const scrollToTop = () => {
+    window.scroll(0, 0);
+  };
   return (
     <nav className="pagination-container" aria-label="Page navigation example">
       <ul className="pagination">
         <li className="page-item">
-          <Link className="page-link" to={`${urlParser('previous')}`}>
+          <Link
+            className="page-link"
+            to={`${urlParser('previous')}`}
+            {...(page && pageNum !== 1 && { onClick: scrollToTop })}
+          >
             <i className="fas fa-arrow-left" />
           </Link>
         </li>
         <li className="page-item">
-          <Link className="page-link" to={urlParser('next')}>
+          <Link
+            className="page-link"
+            to={urlParser('next')}
+            {...(page && pageNum !== pageLimit && { onClick: scrollToTop })}
+          >
             <i className="fas fa-arrow-right" />
           </Link>
         </li>
