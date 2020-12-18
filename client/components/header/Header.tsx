@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 // import { openModal } from '../../store/modal/actions';
 // import { StoreState } from '../../store/store';
 // import { logOut } from '../../store/authentication/actions';
-
 import './header.scss';
 
 const Header: React.FC = () => {
@@ -40,7 +39,10 @@ const Header: React.FC = () => {
   return (
     <div className="header">
       <Link to="/">
-        <h1>SBA Cocktails</h1>
+        <img
+          src="../../../public/assets/SBA_CocktailLibrary_Header_Desktop.png"
+          alt="SBA Cocktail Library Logo"
+        />
       </Link>
       {/* <div className="links">
         {signedIn ? (
