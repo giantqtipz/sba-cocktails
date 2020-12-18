@@ -26,7 +26,8 @@ cocktailsRouter.get('/cocktails/:id', async (req, res) => {
 });
 
 cocktailsRouter.get('/cocktails', async (req, res) => {
-  const limit = 9;
+  const limit = 18;
+  // change limit to 9 for default
   try {
     await paginator(req, res, limit);
   } catch (e) {

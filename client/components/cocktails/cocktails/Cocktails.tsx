@@ -10,7 +10,8 @@ import { CocktailAttributes } from '../../../store/cocktails/interface';
 import { StoreState } from '../../../store/store';
 import EditCocktail from '../cocktailForms/EditCocktail';
 import './cocktails.scss';
-import Paginator from '../../paginator/Paginator';
+// import Paginator from '../../paginator/Paginator';
+// uncomment for pagination
 
 interface Props {
   props: {
@@ -27,10 +28,17 @@ const Cocktails: React.FC<Props> = ({
 }) => {
   const {
     cocktails: {
-      cocktails: { cocktails, count, limit },
+      cocktails: { cocktails },
     },
     authentication: { signedIn },
   } = useSelector((state: StoreState) => state);
+  // const {
+  //   cocktails: {
+  //     cocktails: { cocktails, count, limit },
+  //   },
+  //   authentication: { signedIn },
+  // } = useSelector((state: StoreState) => state);
+  // Remove the above, and uncomment the below for pagination
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCocktails(search));
@@ -70,7 +78,7 @@ const Cocktails: React.FC<Props> = ({
             })}
         </div>
       </div>
-      <Paginator count={count} limit={limit} search={search} />
+      {/* <Paginator count={count} limit={limit} search={search} /> */}
     </div>
   );
 };
