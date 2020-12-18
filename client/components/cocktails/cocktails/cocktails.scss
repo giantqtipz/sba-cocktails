@@ -21,10 +21,13 @@
                 padding: 1rem;
                 text-align: center;
             }
-            img {
-                object-fit: cover;
-                transform: scale(1.2);
-                width: 100%;
+            .cocktail-image-container {
+                overflow: hidden;
+                img {
+                    object-fit: cover;
+                    transform: scale(1.2);
+                    width: 100%;
+                }
             }
             button {
                 background-color: red;
