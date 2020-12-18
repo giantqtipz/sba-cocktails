@@ -56,7 +56,7 @@ const Cocktails: React.FC<Props> = ({
                 <div className="cocktail">
                   <Link to={`/cocktails/${cocktail.id}`} key={cocktail.id}>
                     <div className="cocktail-image-container">
-                     <img src={cocktail.image} alt={cocktail.name} />
+                      <img src={cocktail.image} alt={cocktail.name} />
                     </div>
                     <h3>{cocktail.name}</h3>
                   </Link>
