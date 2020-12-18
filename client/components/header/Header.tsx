@@ -38,12 +38,7 @@ const Header: React.FC = () => {
 
   return (
     <div className="header">
-      <Link to="/">
-        <img
-          src="../../../public/assets/SBA_CocktailLibrary_Header_Desktop.png"
-          alt="SBA Cocktail Library Logo"
-        />
-      </Link>
+      <Link to="/" />
       {/* <div className="links">
         {signedIn ? (
           <button type="button" onClick={logoutUser}>

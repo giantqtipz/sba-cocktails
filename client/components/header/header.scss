@@ -1,11 +1,18 @@
 .header {
     align-items: center;
+    background-image: url('../../../public/assets/SBA_CocktailLibrary_Header_Desktop.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 125px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 1rem;
+    width: 100%;
     a {
+        height: 100%;
         text-decoration: none;
+        width: 100%;
     }
     h1 {
         color: black;
@@ -23,3 +30,23 @@
         transition: opacity .2s ease-in;
     }
 }
+
+@media only screen and (min-width: 400px) {
+    .header {
+        background-image: url('../../../public/assets/SBA_CocktailLibrary_Header_Desktop.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 140px;
+    }
+};
+
+@media only screen and (min-width: 674px) {
+    .header {
+        background-image: url('../../../public/assets/SBA_CocktailLibrary_Header_Desktop.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 240px;
+    }
+};
