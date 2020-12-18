@@ -1,6 +1,6 @@
 .header {
     align-items: center;
-    background-image: url('../../../public/assets/SBA_CocktailLibrary_Header_Desktop.png');
+    background-image: url('../../../public/assets/SBA_CocktailLibrary_Header_Mobile.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -33,11 +33,11 @@
 
 @media only screen and (min-width: 400px) {
     .header {
-        background-image: url('../../../public/assets/SBA_CocktailLibrary_Header_Desktop.png');
+        background-image: url('../../../public/assets/SBA_CocktailLibrary_Header_Mobile.png');
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        height: 140px;
+        height: 160px;
     }
 };
 
