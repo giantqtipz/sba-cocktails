@@ -90,16 +90,18 @@ const Search: React.FC<Props> = ({ props }) => {
     // } else {
     //   setSearchResults(`No cocktails match your query`);
     // }
-    if (count) {
-      if (searchTerm === '' && count > 0) {
-        setSearchResults(`Showing all ${count} cocktails!`);
-      } else if (searchTerm !== '' && count > 0) {
+    if (!count) {
+      if (searchTerm !== '') {
+        setSearchResults(`No cocktails match your query`);
+      } else {
+        setSearchResults('Loading Cocktails');
+      }
+    } else if (count > 0) {
+      if (searchTerm !== '') {
         setSearchResults(`Found ${count} cocktails!`);
       } else {
-        setSearchResults(`No cocktails match your query`);
+        setSearchResults(`Showing all ${count} cocktails!`);
       }
-    } else {
-      setSearchResults('Loading Cocktails');
     }
   }, [count]);
 
@@ -165,7 +167,9 @@ const Search: React.FC<Props> = ({ props }) => {
           </ul>
         )}
       </div>
-      <p className={count ? '' : 'loading'}>{searchResults}</p>
+      <p className={!count && searchTerm === '' ? 'loading' : ''}>
+        {searchResults}
+      </p>
     </div>
   );
 };
