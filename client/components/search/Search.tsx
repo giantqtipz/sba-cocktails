@@ -99,7 +99,7 @@ const Search: React.FC<Props> = ({ props }) => {
         setSearchResults(`No cocktails match your query`);
       }
     } else {
-      setSearchResults('Loading Cocktails...');
+      setSearchResults('Loading Cocktails');
     }
   }, [count]);
 
