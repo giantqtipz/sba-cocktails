@@ -19,6 +19,18 @@ const App: React.FC = () => {
   }, []);
   return (
     <React.StrictMode>
+      <div className="snowflakes" aria-hidden="true">
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+      </div>
       <Header />
       <Switch>
         <Route exact path="/" component={Main} />

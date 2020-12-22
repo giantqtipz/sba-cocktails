@@ -12,18 +12,6 @@ interface Props {
 const Main: React.FC<Props> = (props) => {
   return (
     <>
-      <div className="snowflakes" aria-hidden="true">
-        <div className="snowflake">❅</div>
-        <div className="snowflake">❅</div>
-        <div className="snowflake">❆</div>
-        <div className="snowflake">❄</div>
-        <div className="snowflake">❅</div>
-        <div className="snowflake">❆</div>
-        <div className="snowflake">❄</div>
-        <div className="snowflake">❅</div>
-        <div className="snowflake">❆</div>
-        <div className="snowflake">❄</div>
-      </div>
       <Search props={props} />
       <Cocktails props={props} />
     </>
