@@ -14,23 +14,12 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     app.auth().onAuthStateChanged((user: any) => {
+      console.log(user);
       if (user) dispatch(logInPersistence());
     });
   }, []);
   return (
     <React.StrictMode>
-      <div className="snowflakes" aria-hidden="true">
-        <div className="snowflake">❅</div>
-        <div className="snowflake">❆</div>
-        <div className="snowflake">❅</div>
-        <div className="snowflake">❆</div>
-        <div className="snowflake">❅</div>
-        <div className="snowflake">❆</div>
-        <div className="snowflake">❅</div>
-        <div className="snowflake">❆</div>
-        <div className="snowflake">❅</div>
-        <div className="snowflake">❆</div>
-      </div>
       <Header />
       <Switch>
         <Route exact path="/" component={Main} />

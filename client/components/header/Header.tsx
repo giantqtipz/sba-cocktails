@@ -1,45 +1,44 @@
 import React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import AddCocktail from '../cocktails/cocktailForms/AddCocktail';
-// import Login from '../login/Login';
-// import { openModal } from '../../store/modal/actions';
-// import { StoreState } from '../../store/store';
-// import { logOut } from '../../store/authentication/actions';
+import AddCocktail from '../cocktails/cocktailForms/AddCocktail';
+import Login from '../login/Login';
+import { openModal } from '../../store/modal/actions';
+import { StoreState } from '../../store/store';
+import { logOut } from '../../store/authentication/actions';
 import './header.scss';
 
 const Header: React.FC = () => {
-  // const { signedIn } = useSelector((state: StoreState) => state.authentication);
-  // const dispatch = useDispatch();
-  // const openAddCocktailModal = () => {
-  //   return dispatch(
-  //     openModal({
-  //       BodyModal: AddCocktail,
-  //       data: {},
-  //       open: true,
-  //       title: 'Add A New Cocktail',
-  //     })
-  //   );
-  // };
-  // const loginModal = () => {
-  //   return dispatch(
-  //     openModal({
-  //       BodyModal: Login,
-  //       data: {},
-  //       open: true,
-  //       title: 'Login',
-  //     })
-  //   );
-  // };
+  const { signedIn } = useSelector((state: StoreState) => state.authentication);
+  const dispatch = useDispatch();
+  const openAddCocktailModal = () => {
+    return dispatch(
+      openModal({
+        BodyModal: AddCocktail,
+        data: {},
+        open: true,
+        title: 'Add A New Cocktail',
+      })
+    );
+  };
+  const loginModal = () => {
+    return dispatch(
+      openModal({
+        BodyModal: Login,
+        data: {},
+        open: true,
+        title: 'Login',
+      })
+    );
+  };
 
-  // const logoutUser = () => {
-  //   dispatch(logOut());
-  // };
+  const logoutUser = () => {
+    dispatch(logOut());
+  };
 
   return (
     <div className="header">
-      <Link to="/" />
-      {/* <div className="links">
+      <div className="links">
         {signedIn ? (
           <button type="button" onClick={logoutUser}>
             <i className="fas fa-sign-out-alt" />
@@ -54,7 +53,8 @@ const Header: React.FC = () => {
             <i className="fas fa-cocktail" />
           </button>
         )}
-      </div> */}
+      </div>
+      <Link to="/" />
     </div>
   );
 };
