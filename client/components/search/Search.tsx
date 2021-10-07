@@ -83,12 +83,25 @@ const Search: React.FC<Props> = ({ props }) => {
   useEffect(() => {
     setSearchType(searchTypeDefault || 'cocktails');
     setSearchTerm(searchTermDefault);
-    if (searchTerm === '' && count > 0) {
-      setSearchResults(`Showing all ${count} cocktails!`);
-    } else if (searchTerm !== '' && count > 0) {
-      setSearchResults(`Found ${count} cocktails!`);
-    } else {
-      setSearchResults(`No cocktails match your query`);
+    // if (searchTerm === '' && count > 0) {
+    //   setSearchResults(`Showing all ${count} cocktails!`);
+    // } else if (searchTerm !== '' && count > 0) {
+    //   setSearchResults(`Found ${count} cocktails!`);
+    // } else {
+    //   setSearchResults(`No cocktails match your query`);
+    // }
+    if (!count) {
+      if (searchTerm !== '') {
+        setSearchResults(`No cocktails match your query`);
+      } else {
+        setSearchResults('Loading Cocktails');
+      }
+    } else if (count > 0) {
+      if (searchTerm !== '') {
+        setSearchResults(`Found ${count} cocktails!`);
+      } else {
+        setSearchResults(`Showing all ${count} cocktails!`);
+      }
     }
   }, [count]);
 
@@ -154,7 +167,9 @@ const Search: React.FC<Props> = ({ props }) => {
           </ul>
         )}
       </div>
-      <p>{searchResults}</p>
+      <p className={!count && searchTerm === '' ? 'loading' : ''}>
+        {searchResults}
+      </p>
     </div>
   );
 };

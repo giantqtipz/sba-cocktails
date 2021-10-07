@@ -12,7 +12,9 @@
             justify-content: center;
             select {
                 background: #fff;
-                border-radius: 0;
+                border: 1px solid gray;
+                border-top-left-radius: 2px;
+                border-bottom-left-radius: 2px;
                 -webkit-appearance: none;
                 background :url('https://upload-icon.s3.us-east-2.amazonaws.com/uploads/icons/png/20305395141540882611-512.png') 80% no-repeat;
                 background-color: #fff;
@@ -24,9 +26,11 @@
                 max-width: 600px;
                 width: 100%;
                 input {
-                    border: 1px solid black;
+                    border: 1px solid gray;
+                    border-left: none;
+                    border-top-right-radius: 2px;
+                    border-bottom-right-radius: 2px;
                     box-sizing: border-box;
-                    margin-left: 1px;
                     padding: 6px;
                     width: 100%;
                 }
@@ -42,6 +46,29 @@
     p {
         margin: 1rem 0;
     }
+    .loading:after {
+        content: ' .';
+        animation: dots 1s steps(5, end) infinite;}
+      
+      @keyframes dots {
+        0%, 20% {
+          color: rgba(0,0,0,0);
+          text-shadow:
+            .25em 0 0 rgba(0,0,0,0),
+            .5em 0 0 rgba(0,0,0,0);}
+        40% {
+          color: black;
+          text-shadow:
+            .25em 0 0 rgba(0,0,0,0),
+            .5em 0 0 rgba(0,0,0,0);}
+        60% {
+          text-shadow:
+            .25em 0 0 black,
+            .5em 0 0 rgba(0,0,0,0);}
+        80%, 100% {
+          text-shadow:
+            .25em 0 0 black,
+            .5em 0 0 black;}}
 }
 
 .ingredients {
@@ -73,6 +100,7 @@
     .search-container {
         p {
             font-size: 1.1rem;
+            margin-left: 1rem;
         }
     }
 }
