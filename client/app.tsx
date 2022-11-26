@@ -14,7 +14,6 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     app.auth().onAuthStateChanged((user: any) => {
-      console.log(user);
       if (user) dispatch(logInPersistence());
     });
   }, []);
