@@ -14,8 +14,7 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     app.auth().onAuthStateChanged((user: any) => {
-      console.log(user);
-      if (user) dispatch(logInPersistence());
+      if (user) dispatch(logInPersistence(user.l));
     });
   }, []);
   return (
@@ -29,5 +28,5 @@ const App: React.FC = () => {
     </React.StrictMode>
   );
 };
-
+//
 export default App;

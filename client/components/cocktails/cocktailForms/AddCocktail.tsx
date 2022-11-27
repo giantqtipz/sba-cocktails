@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createCocktail } from '../../../store/cocktails/actions';
 import { CocktailAttributes } from '../../../store/cocktails/interface';
+import { StoreState } from '../../../store/store';
 import Steps from './Steps';
 import Ingredients from './Ingredients';
 import './cocktailForm.scss';
@@ -14,6 +15,11 @@ const AddCocktail: React.FC = () => {
     steps: [{ id: '', step: '', order: 0 }],
     ingredients: [{ id: '', ingredient: '', order: 0 }],
   });
+
+  const {
+    authentication: { signedIn, key },
+  } = useSelector((state: StoreState) => state);
+
   const dispatch = useDispatch();
   const fieldsInputHandler = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,7 +39,9 @@ const AddCocktail: React.FC = () => {
 
   const submitCocktail = (event: React.FormEvent) => {
     event.preventDefault();
-    dispatch(createCocktail(fields));
+    return signedIn
+      ? dispatch(createCocktail(fields, key))
+      : alert('Not Signed In');
   };
   return (
     <form className="cocktail-form" onSubmit={submitCocktail}>

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   updateCocktail,
   deleteCocktail,
 } from '../../../store/cocktails/actions';
 import { CocktailAttributes } from '../../../store/cocktails/interface';
+import { StoreState } from '../../../store/store';
 import Steps from './Steps';
 import Ingredients from './Ingredients';
 import './cocktailForm.scss';
@@ -21,6 +22,9 @@ const EditCocktail: React.FC<{ data: CocktailAttributes }> = (props) => {
     ingredients,
   });
   const dispatch = useDispatch();
+  const {
+    authentication: { signedIn, key },
+  } = useSelector((state: StoreState) => state);
   const fieldsInputHandler = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -31,11 +35,15 @@ const EditCocktail: React.FC<{ data: CocktailAttributes }> = (props) => {
   };
   const editCocktail = (event: React.FormEvent) => {
     event.preventDefault();
-    dispatch(updateCocktail(id, fields));
+    return signedIn && key
+      ? dispatch(updateCocktail(id, fields, key))
+      : alert('Not Signed In');
   };
   const removeCocktail = (event: React.FormEvent) => {
     event.preventDefault();
-    dispatch(deleteCocktail(id || ''));
+    return signedIn && key
+      ? dispatch(deleteCocktail(id || '', key))
+      : alert('Not Signed In');
   };
   return (
     <form className="cocktail-form" onSubmit={editCocktail}>

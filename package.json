@@ -62,7 +62,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
     "node-dev": "^6.2.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^6.0.0",
     "prettier": "^2.1.2",
     "sass-loader": "^10.0.4",
     "style-loader": "^2.0.0",

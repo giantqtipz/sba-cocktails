@@ -42,35 +42,45 @@ export const clearCocktail = (): AppThunk => async (dispatch) => {
   return dispatch(resetCocktail());
 };
 
-export const createCocktail = (
-  newCocktail: CocktailAttributes
-): AppThunk => async (dispatch) => {
-  const { data } = await axios.post(`/api/cocktails/`, newCocktail);
-  return dispatch(addCocktail(data));
-};
+export const createCocktail =
+  (newCocktail: CocktailAttributes, key: string): AppThunk =>
+  async (dispatch) => {
+    const { data } = await axios.post(`/api/cocktails/${key}`, newCocktail);
+    return dispatch(addCocktail(data));
+  };
 
-export const fetchCocktail = (id: string): AppThunk => async (dispatch) => {
-  const { data } = await axios.get(`/api/cocktails/${id}`);
-  return dispatch(setCocktail(data));
-};
+export const fetchCocktail =
+  (id: string): AppThunk =>
+  async (dispatch) => {
+    const { data } = await axios.get(`/api/cocktails/${id}`);
+    return dispatch(setCocktail(data));
+  };
 
-export const fetchCocktails = (params: string): AppThunk => async (
-  dispatch
-) => {
-  const { data } = await axios.get(`/api/cocktails/${params}`);
-  return dispatch(setCocktails(data));
-};
+export const fetchCocktails =
+  (params: string): AppThunk =>
+  async (dispatch) => {
+    const { data } = await axios.get(`/api/cocktails/${params}`);
+    return dispatch(setCocktails(data));
+  };
 
-export const updateCocktail = (
-  id: string | undefined,
-  updatedCocktail: CocktailAttributes
-): AppThunk => async (dispatch) => {
-  const { data } = await axios.put(`/api/cocktails/${id}`, updatedCocktail);
-  await dispatch(updateCocktails(data));
-  await dispatch(editCocktail(data));
-};
+export const updateCocktail =
+  (
+    id: string | undefined,
+    updatedCocktail: CocktailAttributes,
+    key: string
+  ): AppThunk =>
+  async (dispatch) => {
+    const { data } = await axios.put(
+      `/api/cocktails/${id}/${key}`,
+      updatedCocktail
+    );
+    await dispatch(updateCocktails(data));
+    await dispatch(editCocktail(data));
+  };
 
-export const deleteCocktail = (id: string): AppThunk => async (dispatch) => {
-  await axios.delete(`/api/cocktails/${id}`);
-  return dispatch(removeCocktail(id));
-};
+export const deleteCocktail =
+  (id: string, key: string): AppThunk =>
+  async (dispatch) => {
+    await axios.delete(`/api/cocktails/${id}/${key}`);
+    return dispatch(removeCocktail(id));
+  };

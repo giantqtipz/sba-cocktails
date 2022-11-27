@@ -4,6 +4,7 @@ import { AuthenticationState } from './interface';
 
 const initialState: AuthenticationState = {
   signedIn: false,
+  key: '',
 };
 
 export const authenticationReducer = (
@@ -14,6 +15,7 @@ export const authenticationReducer = (
     case TYPES.SIGNED_IN:
       return {
         signedIn: action.signedIn,
+        key: action.key
       };
     default:
       return state;
