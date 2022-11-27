@@ -15,7 +15,11 @@ const AddCocktail: React.FC = () => {
     steps: [{ id: '', step: '', order: 0 }],
     ingredients: [{ id: '', ingredient: '', order: 0 }],
   });
-  const { authentication: { signedIn } } = useSelector((state: StoreState) => state);
+
+  const {
+    authentication: { signedIn, key },
+  } = useSelector((state: StoreState) => state);
+
   const dispatch = useDispatch();
   const fieldsInputHandler = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -35,7 +39,9 @@ const AddCocktail: React.FC = () => {
 
   const submitCocktail = (event: React.FormEvent) => {
     event.preventDefault();
-    signedIn ? dispatch(createCocktail(fields)) : alert('Not Signed In');
+    return signedIn
+      ? dispatch(createCocktail(fields, key))
+      : alert('Not Signed In');
   };
   return (
     <form className="cocktail-form" onSubmit={submitCocktail}>

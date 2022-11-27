@@ -1,7 +1,9 @@
 const cocktailsRouter = require('express').Router();
 // const { check, validationResult } = require('express-validator');
+const path = require('path');
 const { Cocktail, Ingredient, Step } = require('../../db/models/index');
 const { paginator, parseAttribute, updateCocktail } = require('./utils');
+require('dotenv').config({ path: path.join(__dirname, '../../../.env') });
 
 cocktailsRouter.get('/cocktails/:id', async (req, res) => {
   const { id } = req.params;
@@ -35,9 +37,11 @@ cocktailsRouter.get('/cocktails', async (req, res) => {
   }
 });
 
-cocktailsRouter.put('/cocktails/:id', async (req, res) => {
-  const { id } = req.params;
+cocktailsRouter.put('/cocktails/:id/:key', async (req, res) => {
+  const { id, key } = req.params;
   const { name, description, image, steps, ingredients } = req.body;
+  if (key !== process.env.REACT_APP_FIREBASE_KEY)
+    return res.status(400).send({ message: 'Invalid credentials!' });
   try {
     await Promise.all([
       await updateCocktail(id, 'ingredient', ingredients),
@@ -74,24 +78,31 @@ cocktailsRouter.put('/cocktails/:id', async (req, res) => {
   } catch (e) {
     res.status(500).send({ message: 'Server error' });
   }
+  return true;
 });
 
-cocktailsRouter.delete('/cocktails/:id', async (req, res) => {
-  const { id } = req.params;
+cocktailsRouter.delete('/cocktails/:id/:key', async (req, res) => {
+  const { id, key } = req.params;
   try {
+    if (key !== process.env.REACT_APP_FIREBASE_KEY)
+      return res.status(400).send({ message: 'Invalid credentials' });
     const deletedCocktail = await Cocktail.findByPk(id);
     await deletedCocktail.destroy();
     res.sendStatus(200);
   } catch (e) {
     res.status(500).send({ message: 'Server error' });
   }
+  return true;
 });
 
-cocktailsRouter.post('/cocktails', async (req, res) => {
+cocktailsRouter.post('/cocktails/:key', async (req, res) => {
+  const { key } = req.params;
   const { name, description, image, steps, ingredients } = req.body;
   const parsedIngredients = parseAttribute('ingredient', ingredients);
   const parsedSteps = parseAttribute('step', steps);
   try {
+    if (key !== process.env.REACT_APP_FIREBASE_KEY)
+      return res.status(400).send({ message: 'Invalid credentials' });
     await Cocktail.create({
       description,
       image,
@@ -128,6 +139,7 @@ cocktailsRouter.post('/cocktails', async (req, res) => {
     console.log(e);
     res.status(500).send({ message: 'Server error' });
   }
+  return true;
 });
 
 module.exports = {

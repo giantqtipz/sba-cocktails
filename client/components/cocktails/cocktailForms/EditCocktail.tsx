@@ -22,7 +22,9 @@ const EditCocktail: React.FC<{ data: CocktailAttributes }> = (props) => {
     ingredients,
   });
   const dispatch = useDispatch();
-  const { authentication: { signedIn } } = useSelector((state: StoreState) => state);
+  const {
+    authentication: { signedIn, key },
+  } = useSelector((state: StoreState) => state);
   const fieldsInputHandler = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -33,11 +35,15 @@ const EditCocktail: React.FC<{ data: CocktailAttributes }> = (props) => {
   };
   const editCocktail = (event: React.FormEvent) => {
     event.preventDefault();
-    signedIn ? dispatch(updateCocktail(id, fields)) : alert('Not Signed In');
+    return signedIn && key
+      ? dispatch(updateCocktail(id, fields, key))
+      : alert('Not Signed In');
   };
   const removeCocktail = (event: React.FormEvent) => {
     event.preventDefault();
-    signedIn ? dispatch(deleteCocktail(id || '')) : alert('Not Signed In');
+    return signedIn && key
+      ? dispatch(deleteCocktail(id || '', key))
+      : alert('Not Signed In');
   };
   return (
     <form className="cocktail-form" onSubmit={editCocktail}>

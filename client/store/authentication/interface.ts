@@ -1,5 +1,6 @@
 export interface AuthenticationState {
   signedIn: boolean;
+  key: string;
 }
 
 export interface LoginAttributes {
